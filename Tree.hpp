@@ -43,19 +43,24 @@ class NodeT
         
     public:
         Tree();
-    
-        Tree insert(int i);
-        Tree remove(int i);
+        ~Tree();
+        Tree& insert(int i);
+        Tree& remove(int i);
         int size();
         bool contains(int i);
         int root();
         int parent(int i);
         int left(int i);
         int right(int i);
+        void destroy(NodeT* i);
         void print();
     
      private:
         int value;
         NodeT* rootOfTree;
+        NodeT* Min(NodeT* root);
+        NodeT* Remove(NodeT *root, int num);
+        void inOrder(NodeT* x);
+        NodeT* getNodeT(int y);
     };
 }
