@@ -195,7 +195,7 @@ int Tree::parent(int i)
   NodeT *vertex=rootOfTree;
     while(vertex!=NULL)
          {
-             if(left(vretex->num)==i || right(vertex->num)==i)
+             if(left(vertex->num)==i || right(vertex->num)==i)
                {
                  return vertex->num;
                }
