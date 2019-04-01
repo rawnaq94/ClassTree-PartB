@@ -25,12 +25,14 @@ Tree::~Tree() //Deletes a vertex if it is Null
        {
            destroy(rootOfTree); 
        }
-}     
+}   
+    
+    
 Tree& Tree::insert(int i) 
 { 
     if (contains(i)) //First search the number if found to throw error
        {  
-          throw(" error syntax the tree contains the number")
+          throw(" error syntax the tree contains the number");
        }
 
     NodeT *newNodeT=new NodeT(i); //Creates a vertex
@@ -39,33 +41,33 @@ Tree& Tree::insert(int i)
     if (rootOfTree==NULL) 
        {
            rootOfTree=newNodeT;
-           newNodeT->right=NULL;
-           newNodeT->left=NULL;
+           newNodeT->rightChild=NULL;
+           newNodeT->leftChild=NULL;
        }
      else // current vertex is a root of the tree
        {
            NodeT *vertex=rootOfTree;
-           while(vertex !NULL && !flag)
+           while(vertex !=NULL && !flag)
                 {
                      if(i<vertex->num)
                        {
-                          if(vertex->left==NULL)
+                          if(vertex->leftChild==NULL)
                             {
-                                vertex->left=newNodeT;
+                                vertex->leftChild=newNodeT;
                                 flag=true;
                             }
-                         vertex=vertex->left;
+                         vertex=vertex->leftChild;
                        }
                      else
                        {
                           if(i>vertex->num)
                             {
-                               if(vertex->right==NULL)
+                               if(vertex->rightChild==NULL)
                                  {
-                                    vertex->right=newNodeT;
+                                    vertex->rightChild=newNodeT;
                                     flag=true;
                                  }
-                              vretex=vertex->right;
+                              vretex=vertex->rightChild;
                              }
                         }
                   }
@@ -80,7 +82,7 @@ Tree& Tree::remove(int i)
 {
     if (!contains(i)) //First search the number if it is not found you can not delete it so we will throw an error
        {  
-          throw(" error syntax the tree is not contains the number")
+          throw(" error syntax the tree is not contains the number");
        }
     Remove(rootOfTree, i);
     value--;
@@ -94,29 +96,29 @@ NodeT* Tree::Remove(NodeT *root, int num)
       {
          return root;
       }
-    else if(num<root->num) root->left=Remove(root->left,num);
-    else if(num>root->num) root->right=Remove(root->right,num);
+    else if(num<root->num) root->leftChild=Remove(root->leftChild,num);
+    else if(num>root->num) root->rightChild=Remove(root->rightChild,num);
     else //Here we found him
        {
-          if(root->left==NULL && root->right==NULL) //vertex whith out child
+          if(root->leftChild==NULL && root->rightChild==NULL) //vertex whith out child
             {
               root=NULL;
             }
-             else if(root->left==NULL) //vertex whith on child
+             else if(root->leftChild==NULL) //vertex whith on child
                     {
                        NodeT *cond=root;
-                       root=root->right;
+                       root=root->rightChild;
                     }
-             else if(root->right==NULL) 
+             else if(root->rightChild==NULL) 
                     {
                        NodeT *cond=root;
-                       root=root->left;
+                       root=root->leftChild;
                     }
            else // vertex whith two child
              {
-                NodeT *cond=Min(root->right);
+                NodeT *cond=Min(root->rightChild);
                 root->num=cond->num;
-                root->right=Remove(root->right,cond->num);
+                root->rightChild=Remove(root->rightChild,cond->num);
              }
          }
     return root;
@@ -126,9 +128,9 @@ NodeT* Tree::Remove(NodeT *root, int num)
  
 NodeT *Tree::Min(NodeT * vertex)
 {
-    while(vertex->left!=NULL)
+    while(vertex->leftChild!=NULL)
     {
-        vertex=vertex->left;
+        vertex=vertex->leftChild;
         return vertex;
     }
 }
@@ -151,13 +153,13 @@ bool Tree::contains(int i)
           }
         if(i<vertex->num)
           {
-            vertex=vertex->left;
+            vertex=vertex->leftChild;
           }
      else
      {
          if(i>vertex->num)
            {
-             vertex=vertex->right;
+             vertex=vertex->rightChild;
            }
      }
     }
@@ -199,11 +201,11 @@ int Tree::parent(int i)
                }
              if(i<left(vertex->num))
              {
-                 vertex=vertex->left;
+                 vertex=vertex->leftChild;
              }
               else
               {
-                  vertex=vertex->right;
+                  vertex=vertex->rightChild;
               }
     }
     return 0;
@@ -213,18 +215,18 @@ int Tree::parent(int i)
 int Tree::left(int i) 
 {
     NodeT *vertex=getNodeT(i);
-    if(vertex->left==NULL)
+    if(vertex->leftChild==NULL)
     {
         throw("no left child");
     }
     else
     {
-        return (vertex->left)->num;
+        return (vertex->leftChild)->num;
     }
 }
     
  
-NodeT* Tree::getNodeT(int y)
+NodeT* Tree::getNodeT(int i)
 {
      if(rootOfTree==NULL)
      {
@@ -243,11 +245,11 @@ NodeT* Tree::getNodeT(int y)
         }
         if(i<vertex->num)
         {
-            vertex=vertex->left;
+            vertex=vertex->leftChild;
         }
         else
         {
-            vertex=vertex->right;
+            vertex=vertex->rightChild;
         }
     }
    return vertex;
@@ -258,13 +260,13 @@ NodeT* Tree::getNodeT(int y)
 int Tree::right(int i)
 {
      NodeT *vertex=getNodeT(i);
-    if(vertex->right==NULL)
+    if(vertex->rightChild==NULL)
     {
         throw("no right child");
     }
     else
     {
-        return (vertex->right)->num;
+        return (vertex->rightChild)->num;
     }
 }
     
@@ -275,8 +277,8 @@ void Tree::destroy(NodeT *i)
 {
     if(i!=NULL)
     {
-        destroy(i->left);
-        destroy(i->right);
+        destroy(i->leftChild);
+        destroy(i->rightChild);
         delete(i);
     }
 }
@@ -286,9 +288,9 @@ void Tree::In(NodeT * x)
 {
     if(x!=NULL)
     {
-        In(x->left);
+        In(x->leftChild);
         cout << "--" << x->num;
-        In(x->right);
+        In(x->rightChild);
     }
 }
     
