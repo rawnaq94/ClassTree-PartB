@@ -134,6 +134,7 @@ NodeT *Tree::Min(NodeT * vertex)
         vertex=vertex->leftChild;
         return vertex;
     }
+    return;
 }
              
 
