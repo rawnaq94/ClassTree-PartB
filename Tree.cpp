@@ -226,16 +226,34 @@ int Tree::left(int i)
  
 NodeT* Tree::getNodeT(int y)
 {
-     if(
+     if(rootOfTree==NULL)
+     {
+         throw("no vertex the tree is empty");
+     }
+    if(!contains(i))
+    {
+        throw("the tree is not exist this number");
+    }
+ NodeT *vertex=rootOfTree;
+    while(vertex!=NULL)
+    {
+        if(vertex->num==i)
+        {
+            return vertex;
+        }
+        if(i<vertex->num)
+        {
+            vertex=vertex->left;
+        }
+        else
+        {
+            vertex=vertex->right;
+        }
+    }
+   return vertex;
+}
+  
     
-         
-         
-         
-         
-         
-         
-         
-         
          
 int Tree::right(int i)
 {
