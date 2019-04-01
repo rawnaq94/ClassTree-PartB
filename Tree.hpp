@@ -59,8 +59,8 @@ class NodeT
         int value;
         NodeT* rootOfTree;
         NodeT* Min(NodeT* root);
-        NodeT* Remove(NodeT *root, int num);
-        void inOrder(NodeT* x);
+        NodeT* Remove(NodeT *root, int num); //search a delete a value from tree.
+        void In(NodeT* x);
         NodeT* getNodeT(int y);
     };
 }
