@@ -130,11 +130,9 @@ NodeT* Tree::Remove(NodeT *root, int num)
 NodeT *Tree::Min(NodeT * vertex)
 {
     while(vertex->leftChild!=NULL)
-    {
         vertex=vertex->leftChild;
         return vertex;
-    }
-    return;
+   
 }
              
 
