@@ -67,7 +67,7 @@ Tree& Tree::insert(int i)
                                     vertex->rightChild=newNodeT;
                                     flag=true;
                                  }
-                              vretex=vertex->rightChild;
+                              vertex=vertex->rightChild;
                              }
                         }
                   }
