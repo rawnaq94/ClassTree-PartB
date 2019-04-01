@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include "Tree.hpp"
-#pragma once
 using namespace std;
 
 
